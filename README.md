@@ -21,8 +21,12 @@ log in and request to borrow books. The system currently has some bugs that need
 of new features. Additionally, there's a requirement to introduce self-service functionality using scanners for book 
 returns, so that borrows do not need to be manually entered into the database by administrators.
 
-Create a new branch for your work, and commit your changes to that branch. Once you're done, please create a pull
-request. We will review your pull request and provide feedback.
+Please *fork* this repository, create a new branch, and commit your changes to that branch. Once you're done, create a pull
+request and target the main branch of *your own repository*. 
+
+*Do not* target the Ascend-Recruitment/Ascend-Tech-Test repository. 
+
+This will allow us to easily see what changes were made so we can review your pull request and provide feedback.
 
 Please do not spend longer than 4 hours on this task. If you are unable to complete a task within the time frame,
 don't worry about it.
