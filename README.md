@@ -1,19 +1,5 @@
 # Ascend Technical Test
 
-## Installation
-
-- Clone the repository
-- Run `composer install`
-- Run `cp .env.example .env`
-- Run `php artisan key:generate`
-- Configure your database
-- Run `php artisan migrate --seed`
-- Run `npm install`
-- Compile assets: run `npm run dev`
-- Login with the following credentials:
-  - Email: `test.user@test.com`
-  - Password: `secret1234`
-
 ## Introduction
 
 You are tasked with working on a Laravel/Vue/Inertia/Tailwind project, which is a basic library system allowing users to
@@ -33,6 +19,19 @@ don't worry about it.
 
 As you complete a task, please check it off in the task list below. Feel free to complete the tasks in any order you
 prefer.
+
+## Installation
+
+- Run `composer install`
+- Run `cp .env.example .env`
+- Run `php artisan key:generate`
+- Configure your database
+- Run `php artisan migrate --seed`
+- Run `npm install`
+- Compile assets: run `npm run dev`
+- Login with the following credentials:
+  - Email: `test.user@test.com`
+  - Password: `secret1234`
 
 ### Part One: Bug Fixes
 
