@@ -64,13 +64,20 @@ class BorrowRequestsTest extends TestCase
     public function can_request_to_borrow_a_book()
     {
         $library = Library::factory()->create();
+        $libraryTwo = Library::factory()->create();
+
         $bookCopy = BookCopy::factory()->create([
             'library_id' => $library->id,
         ]);
+
         $bookCopyTwo = BookCopy::factory()->create([
-            'library_id' => $library->id,
+            'library_id' => $libraryTwo->id,
         ]);
-        $user = User::factory()->hasAttached($library)->create();
+
+        $user = User::factory()
+            ->hasAttached($library)
+            ->hasAttached($libraryTwo)
+            ->create();
 
         $response = $this->actingAs($user)->post(route('borrow-requests.store'), [
             'book_copy_id' => $bookCopyTwo->id
@@ -78,9 +85,8 @@ class BorrowRequestsTest extends TestCase
 
         $response->assertSessionHas('success');
         $this->assertCount(1, $borrowRequests = BorrowRequest::all());
-
         $this->assertEquals($user->id, $borrowRequests->first()->user_id);
-        $this->assertEquals($bookCopy->id, $borrowRequests->first()->book_copy_id);
+        $this->assertEquals($bookCopyTwo->id, $borrowRequests->first()->book_copy_id);
         $this->assertEquals(now()->toDateTimeString(), $borrowRequests->first()->requested_at->toDateTimeString());
         $this->assertEquals(now()->addDay()->toDateTimeString(), $borrowRequests->first()->requested_until->toDateTimeString());
     }

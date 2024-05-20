@@ -27,7 +27,7 @@ class CreateBorrowRequest extends Action
         $this->bookCopy()->markAsReserved();
 
         $borrowRequest = new BorrowRequest();
-        $borrowRequest->book_copy_id = $this->book_copy_id;
+        $borrowRequest->book_copy_id = $this->bookCopy()->getKey();
         $borrowRequest->user_id = $this->user()->id;
         $borrowRequest->requested_at = now();
         $borrowRequest->requested_until = now()->addDay();
