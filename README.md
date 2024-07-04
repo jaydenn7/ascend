@@ -7,7 +7,7 @@
 - Run `cp .env.example .env`
 - Run `php artisan key:generate`
 - Configure your database
-- Run `php artisan migrate --seed`
+- Run `php artisan migrate:fresh --seed`
 - Run `npm install`
 - Compile assets: run `npm run dev`
 - Login with the following credentials:
@@ -50,7 +50,7 @@ prefer.
 ### Part Two: Self-Service Book Returns
 
 1. Automated Book Returns with Scanners 
-   - **Feature Description:** Currently, book borrows/returns are handled manually by administrators. The libraries have invested in scanners to introduce a self-scan service for its library users. Scanners are capable of making API requests to the library system. Design a RESTful API that can handle book borrows/returns from scanners.
+   - **Feature Description:** Currently, book borrows/returns are handled manually by administrators. The libraries have invested in scanners to introduce a self-scan service for its library users. Scanners are capable of making API requests to the library system. Design a RESTful API that can handle book borrows/returns from scanners. NB: borrows are different from borrow requests - a borrow request is essentially a book that is reserved in the library, but a borrow is when the book is taken from the library therefore you will need to think about how you would record borrows in the database.
    - **Tasks:**
      - [ ] Implement a RESTful API endpoint to handle book borrows from scanners.
      - [ ] Implement a RESTful API endpoint to handle book returns from scanners.
