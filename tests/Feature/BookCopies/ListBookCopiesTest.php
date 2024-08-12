@@ -24,6 +24,6 @@ class ListBookCopiesTest extends TestCase
 
         $response->assertInertia(fn (AssertableInertia $page) => $page
             ->component('BookCopies/Index')
-            ->count('book_copies.data', 1));
+            ->count('book_copies.data', 2));
     }
 }
