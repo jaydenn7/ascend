@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use App\Models\BookCopy;
 use App\Models\BorrowRequest;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @property int $book_copy_id
@@ -28,7 +27,7 @@ class CreateBorrowRequest extends Action
 
         $borrowRequest = new BorrowRequest();
         $borrowRequest->book_copy_id = $this->bookCopy()->getKey();
-        $borrowRequest->user_id = $this->user()->id;
+        $borrowRequest->user_id = $this->user()->getKey();
         $borrowRequest->requested_at = now();
         $borrowRequest->requested_until = now()->addDay();
         $borrowRequest->save();
@@ -39,6 +38,7 @@ class CreateBorrowRequest extends Action
     private function bookCopy(): ?BookCopy
     {
         return once(fn () => BookCopy::query()
+            ->whereKey($this->book_copy_id)
             ->whereAccessibleTo($this->user())
             ->whereAvailable()
             ->first());
