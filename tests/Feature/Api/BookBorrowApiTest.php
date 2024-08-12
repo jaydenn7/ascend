@@ -5,13 +5,13 @@ namespace Tests\Feature\Api;
 use App\Enums\Status;
 use App\Models\BookCopy;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class BookBorrowApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     /** @test */
     public function successful_borrowing_of_a_book_copy()

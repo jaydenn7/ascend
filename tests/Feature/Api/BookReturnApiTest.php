@@ -6,13 +6,14 @@ use App\Enums\Status;
 use App\Models\BookCopy;
 use App\Models\Borrow;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class BookReturnApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     /** @test */
     public function successful_book_return()
