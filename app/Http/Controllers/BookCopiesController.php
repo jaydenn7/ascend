@@ -17,6 +17,7 @@ class BookCopiesController extends Controller
                 BookCopy::query()
                     ->with("book.authors")
                     ->whereAvailable()
+                    ->whereAccessibleTo(Auth::user())
                     ->applySearchFiltersFrom($request)
                     ->get()
             ),
