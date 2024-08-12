@@ -14,7 +14,7 @@ class BookCopiesController extends Controller
             'book_copies' => fn () => BookCopyResource::collection(
                 BookCopy::query()
                     ->with("book.authors")
-                    ->whereNotReserved()
+                    ->whereAvailable()
                     ->applySearchFiltersFrom($request)
                     ->get()
             )
