@@ -2,10 +2,17 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $book_copy_id
+ * @property int $user_id
+ * @property Carbon $borrowed_from
+ * @property Carbon|null $returned_at
+ */
 class Borrow extends Model
 {
     use HasFactory;
