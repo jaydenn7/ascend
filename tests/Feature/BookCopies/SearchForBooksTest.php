@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\BookCopies;
 
+use App\Enums\Status;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\BookCopy;
@@ -70,6 +71,23 @@ class SearchForBooksTest extends TestCase
         $library = Library::factory()->create();
         BookCopy::factory()->count(2)->create(['library_id' => $library->id]);
         $user = User::factory()->hasAttached(Library::factory()->create())->create();
+
+        $response = $this->actingAs($user)->get(route('book-copies.index'));
+
+        $response->assertInertia(fn (AssertableInertia $page) => $page
+            ->component('BookCopies/Index')
+            ->count('book_copies.data', 0));
+    }
+
+    /** @test */
+    public function cannot_search_for_books_that_are_not_available()
+    {
+        $library = Library::factory()->create();
+        BookCopy::factory()->count(2)->create([
+            "library_id" => $library->id,
+            "status" => Status::BORROWED,
+        ]);
+        $user = User::factory()->hasAttached($library)->create();
 
         $response = $this->actingAs($user)->get(route('book-copies.index'));
 
