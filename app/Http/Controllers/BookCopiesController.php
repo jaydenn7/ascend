@@ -13,6 +13,7 @@ class BookCopiesController extends Controller
         return inertia('BookCopies/Index', [
             'book_copies' => fn () => BookCopyResource::collection(
                 BookCopy::query()
+                    ->with("book.authors")
                     ->whereNotReserved()
                     ->applySearchFiltersFrom($request)
                     ->get()
