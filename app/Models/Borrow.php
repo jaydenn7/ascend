@@ -12,12 +12,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $user_id
  * @property Carbon $borrowed_from
  * @property Carbon|null $returned_at
+ * @property Carbon|null $due_date
  */
 class Borrow extends Model
 {
     use HasFactory;
 
-    protected $cast = [
+    protected $casts = [
         'borrowed_from' => 'datetime',
         'due_date' => 'datetime',
         'returned_at' => 'datetime',

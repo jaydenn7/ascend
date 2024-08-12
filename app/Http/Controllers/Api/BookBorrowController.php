@@ -17,6 +17,7 @@ class BookBorrowController
         $request->validate([
             "barcode" => ["required", "string", "exists:book_copies,barcode"],
             "membership_number" => ["required", "string", "exists:users,membership_number"],
+            "due_date" => ["date"],
         ]);
 
         /** @var BookCopy $bookCopy */
@@ -34,11 +35,12 @@ class BookBorrowController
         }
 
         try {
-            DB::transaction(function () use ($bookCopy, $user) {
+            DB::transaction(function () use ($bookCopy, $user, $request) {
                 $borrow = new Borrow;
                 $borrow->book_copy_id = $bookCopy->getKey();
                 $borrow->user_id = $user->getKey();
                 $borrow->borrowed_from = Carbon::now();
+                $borrow->due_date = $request->date("due_date") ?? Carbon::now()->addDay();
                 $borrow->save();
 
                 $bookCopy->markAsBorrowed();
